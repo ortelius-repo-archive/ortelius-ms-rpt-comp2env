@@ -1,3 +1,4 @@
-flask
-flask-restful
-waitress
+flask==1.1.2
+flask-restful==0.3.8
+psycopg2==2.8.6
+
