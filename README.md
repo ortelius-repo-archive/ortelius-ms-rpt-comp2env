@@ -26,9 +26,10 @@ Following APIs are available in the app.
 
 ### Run the app
 To run the app locally use Python 3 \
-`$ python comp2env.py`
+`$ python main.py`
 
 To dockerize the app \
 `$ cd ortelius-ms-rpt-comp2env` \
-`$ docker build -t  comp2env:v1` \
-`$ docker run -it comp2env:v1`
+`$ docker build -t comp2env:v1 .` \
+`$ docker run -it -p 5000:80 comp2env:v1`
+

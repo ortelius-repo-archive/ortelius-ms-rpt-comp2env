@@ -1,8 +1,8 @@
 import os
 
+import psycopg2
 from flask import Flask
 from flask_restful import Resource, Api, reqparse, abort
-from waitress import serve
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,6 +12,14 @@ PRESIDENTS = {
     'usa' : 'trump',
     'russia' : 'putin'
 }
+
+# Init db connection
+db_host = os.getenv("DB_HOST", "localhost")
+db_name = os.getenv("DB_NAME", "postgres")
+db_user = os.getenv("DB_USER", "postgres")
+db_pass = os.getenv("DB_PASS", "postgres")
+
+#conn = psycopg2.connect(host=db_host, database=db_name, user=db_user, password=db_pass)
 
 class PresidentList(Resource): 
     def get(self): 
@@ -59,4 +67,5 @@ if __name__ == '__main__':
     if (os.getenv('FLASK_DEV_ENV', None) is not None):
         app.run(host="127.0.0.1", port=5000)
     else:
-        serve(app, host='127.0.0.1', port=5000)
+        app.run(host="127.0.0.1", port=5000)
+
