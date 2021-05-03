@@ -1,0 +1,37 @@
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+
+image:
+  # TODO - update image params when image is pushed to repo.
+  repository: quay.io/ortelius/ms-rpt-comp2env
+  #digest: 
+  tag: dev-v9.0.0.10-gc0a82a4
+
+service:
+  type: NodePort
+  portName: comp2env-port
+  exposedPort: 8080
+  targetPort: 80
+  nodePort: 30080
+
+envVars:
+  DB_HOST: 192.168.10.96
+  DB_PORT: 6543
+  DB_NAME: postgres
+
+secrets: 
+  env2app-db-creds:
+    data:
+      DB_USER: cG9zdGdyZXM=
+      DB_PASS: cG9zdGdyZXM=
+
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
