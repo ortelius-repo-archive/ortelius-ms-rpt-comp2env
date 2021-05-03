@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "rpt-comp2env.name" . }}
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: {{ include "rpt-comp2env.name" . }}
+  ports:
+  {{- with .Values.service }}
+  - name: {{ .portName }}
+    targetPort: {{ .targetPort }}
+    port: {{ .exposedPort }}
+    nodePort: {{ .nodePort }}
+  {{- end }}
+
